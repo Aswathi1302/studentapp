@@ -12,7 +12,8 @@ while True:
     print("3.search student")
     print("4.upadte student")
     print("5. delete student")
-    print("6.exit")
+    print("6.")
+    print("7.exit")
 
     choice=int(input("enter your choice"))
     if(choice==1):
@@ -57,4 +58,28 @@ while True:
         mydb.commit()
         print("Data deleted successfully..") 
     elif(choice==6):
-        break                
+        print("insert mark")
+        adm=input("enter the admission number:--")
+        sql="SELECT `id`  FROM `students` WHERE `admNo`="+adm
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        id=0
+        for i in result:
+            id= str(i[0])
+        print("student id is :",id)  
+
+        physics=input("enter the physics mark:")
+        chemistry=input("enter the cheistry mark:")
+        mathematics=input("enter the mathematics mark:")
+        sql="INSERT INTO `marks`(`studentid`, `physicsmark`, `chemistrymark`, `mathematicsmark`) VALUES (%s,%s,%s,%s)"
+        data=(id,physics,chemistry,mathematics)
+        mycursor.execute(sql,data)
+        result=mycursor.fetchall()
+        for i in result:
+            print(i)
+        print ("mark data inserted successfylly")    
+    elif(choice==7):
+        break        
+
+              
+
