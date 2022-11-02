@@ -14,7 +14,7 @@ while True:
     print("5. delete student")
     print("6. insert mark")
     print("7.view all mark")
-    print("8.view subject wise mark")
+    print("8.view subject wise average mark")
     print("9.view individual mark")
     print("10.exit")
 
@@ -88,6 +88,21 @@ while True:
         result=mycursor.fetchall()
         for i in result:
             print(i)
+    elif(choice==9):
+        print("indual marks")
+        adm=input("enter the admission number:--")
+        sql="SELECT `id`  FROM `students` WHERE `admNo`="+adm
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        id=0
+        for i in result :
+            id=str(i[0])
+        sql="SELECT s.`name`, s.`rollno`, s.`admNo`, s.`college`, m.physicsmark , m.chemistrymark , m.mathematicsmark FROM `students` s JOIN marks m ON s.id=m.studentid WHERE s.id="+id
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        for i in result:
+            print(i)
+
 
     elif(choice==10):
         break        
