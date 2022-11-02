@@ -12,8 +12,11 @@ while True:
     print("3.search student")
     print("4.upadte student")
     print("5. delete student")
-    print("6.")
-    print("7.exit")
+    print("6. insert mark")
+    print("7.view all mark")
+    print("8.view subject wise mark")
+    print("9.view individual mark")
+    print("10.exit")
 
     choice=int(input("enter your choice"))
     if(choice==1):
@@ -79,6 +82,14 @@ while True:
             print(i)
         print ("mark data inserted successfylly")    
     elif(choice==7):
+        print("view all marks")
+        sql="SELECT s.`name`, s.`rollno`, s.`admNo`, s.`college`, m.physicsmark , m.chemistrymark , m.mathematicsmark FROM `students` s JOIN marks m ON s.id=m.studentid"
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        for i in result:
+            print(i)
+
+    elif(choice==10):
         break        
 
               
